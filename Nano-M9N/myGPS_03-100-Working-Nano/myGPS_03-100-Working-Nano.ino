@@ -2,8 +2,7 @@
 #include <SPI.h>
 #include <Wire.h>
 #include <Adafruit_GFX.h>
-// Connect the GPS RX/TX to arduino pins 3 and 5
-//SoftwareSerial serial = SoftwareSerial(5,7);
+
 
 const char UBLOX_INIT[] PROGMEM = {
   // Disable NMEA
@@ -225,41 +224,21 @@ void updateScreen(){
         digitalWrite(LED_BUILTIN, HIGH);
         old = state;
         speedoText = "mph";
-        // speedCalc = (gSpeed / 447); // mph
         speedCalc = (gSpeed / 445.114); // mph 
 
-        // ########## Delete after test the above ############
-        // speedCalc = gSpeed * 0.0223694; // mph
-        // speedCalc = (speedCalc / 10) + 0.5;
-        // ########## Delete after test the above ############
-
         // speedoText = "Km/h";
-        // speedCalc = gSpeed * 0.036; // kmh
-        // speedCalc = (speedCalc / 10) + 0.5
+        // speedCalc = (gSpeed / 276.581); // Kmh
         break;
 
       default:
         digitalWrite(LED_BUILTIN, LOW);
         old = 0;
         // speedoText = "mph";
-        // speedCalc = gSpeed * 0.0223694; // mph
-        // speedCalc = (speedCalc / 10) + 0.5
-        speedoText = "Km/h";
-        //speedCalc = (gSpeed / 277.8); // kmh
-
-        // speedCalc = (gSpeed / 264.8); // kmh >>> Too high
-        // speedCalc = (gSpeed / 271.3); // kmh >>> High
-        // speedCalc = (gSpeed / 274.55); // kmh >>> High
-        // speedCalc = (gSpeed / 276.175); // kmh >>> High
-        speedCalc = (gSpeed / 276.581); // Kmh
-        // speedCalc = (gSpeed / 276.9875); // Kmh >>> Low
-        // speedCalc = (gSpeed / 277.8); // kmh
+        // speedCalc = (gSpeed / 445.114); // mph 
         
+        speedoText = "Km/h";
+        speedCalc = (gSpeed / 276.581); // Kmh
 
-        // ########## Delete after test the above ############
-        // speedCalc = (gSpeed * 0.036); // kmh
-        // speedCalc = (speedCalc / 10) + 0.7;
-        // ########## Delete after test the above ############
       break;
     }
 
