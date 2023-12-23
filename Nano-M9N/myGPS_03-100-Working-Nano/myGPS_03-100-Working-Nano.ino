@@ -85,17 +85,14 @@ struct NAV_PVT {
   unsigned long headAcc;       // Heading Accuracy Estimate
   unsigned short pDOP;         // Position dilution of precision
   unsigned short flags3;
-  long headVeh;
-
-  // unsigned char reserved1;
-  
+  long headVeh;  
   short magDec;
   unsigned short magAcc;
 
 /////////////////////////////////////////////////////////////////
   unsigned long buffer1;     // To Pass Checksum check
-  // unsigned long buffer2;     // To Pass Checksum check
 /////////////////////////////////////////////////////////////////
+
 };
 
 NAV_PVT pvt;
@@ -206,9 +203,6 @@ void loop() {
   //################################################################################# 
 
   if ( processGPS() ) {
-    // Serial.println(speedoText);
-    // Serial.println(pvt.gSpeed);
-    // Serial.println(pvt.numSV);
     
     gSpeed = pvt.gSpeed; 
     numSV = pvt.numSV;
@@ -231,7 +225,8 @@ void updateScreen(){
         digitalWrite(LED_BUILTIN, HIGH);
         old = state;
         speedoText = "mph";
-        speedCalc = (gSpeed / 447); // mph
+        // speedCalc = (gSpeed / 447); // mph
+        speedCalc = (gSpeed / 445.114); // mph 
 
         // ########## Delete after test the above ############
         // speedCalc = gSpeed * 0.0223694; // mph
@@ -260,8 +255,6 @@ void updateScreen(){
         // speedCalc = (gSpeed / 276.9875); // Kmh >>> Low
         // speedCalc = (gSpeed / 277.8); // kmh
         
-        // speedCalc = (gSpeed / 284.3); // kmh
-        // speedCalc = (gSpeed / 290.8); // kmh
 
         // ########## Delete after test the above ############
         // speedCalc = (gSpeed * 0.036); // kmh
